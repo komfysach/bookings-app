@@ -1,0 +1,9 @@
+{
+  "name": "GQL-React-Bookings",
+  "version": "1.0.0",
+  "description": "Bookings App with GraphQL API and Express backend",
+  "main": "index.js",
+  "repository": "https://github.com/komfysach/bookings-app",
+  "author": "Sachin Lendis",
+  "license": "MIT"
+}

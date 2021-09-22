@@ -1,9 +1,25 @@
 {
-  "name": "GQL-React-Bookings",
-  "version": "1.0.0",
-  "description": "Bookings App with GraphQL API and Express backend",
-  "main": "index.js",
-  "repository": "https://github.com/komfysach/bookings-app",
-  "author": "Sachin Lendis",
-  "license": "MIT"
+    "name": "GQL-React-Bookings",
+    "version": "1.0.0",
+    "description": "Bookings App with GraphQL API and Express backend",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "repository": "https://github.com/komfysach/bookings-app",
+    "author": "Sachin Lendis",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "express-graphql": "^0.12.0",
+        "graphql": "^15.6.0",
+        "install": "^0.13.0",
+        "mongoose": "^6.0.7"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    }
 }

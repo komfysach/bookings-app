@@ -31,6 +31,18 @@ type Patron {
     password: String
 }
 
+type AuthAdminData {
+    adminId: ID!
+    token: String!
+    tokenExpiration: Int!
+}
+
+type AuthPatronData {
+    patronId: ID!
+    token: String!
+    tokenExpiration: Int!
+}
+
 input EventInput {
     title: String
     description: String!
@@ -51,6 +63,8 @@ input PatronInput {
 type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
+    adminLogin(email: String!, password: String!): AuthAdminData!
+    adminPatron(email: String!, password: String!): AuthPatronData!
 }
 
 type RootMutation {

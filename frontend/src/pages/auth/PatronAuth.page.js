@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AuthContext from '../../components/context/auth-context';
 
 import './Auth.styles.scss';
 
@@ -6,6 +7,9 @@ class AuthPatronPage extends Component {
     state = {
         isLogin: true
     };
+
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
         this.emailPatEl = React.createRef();
@@ -65,7 +69,10 @@ class AuthPatronPage extends Component {
             return res.json();
         })
             .then(resData => {
-                console.log(resData);
+                if (resData.data.patronLogin.token) {
+                    this.context.patronLogin(resData.data.patronLogin.token, resData.data.patronLogin.patronId, resData.data.patronLogin.tokenExpiration)
+
+                }
             })
             .catch(err => {
                 console.log(err);

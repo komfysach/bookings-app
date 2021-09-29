@@ -1,0 +1,30 @@
+.main_navigation__header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    .main_navigation__logoContainer {
+        height: 100%;
+        width: 70px;
+        padding: 25px;
+    }
+    .main_navigation__items ul {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .main_navigation__item {
+            padding: 10px 15px;
+            color: #fcf7d9;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    .main_navigation__items a:hover,
+    .main_navigation__items a:active,
+    .main_navigation__items a.active {
+        color: #f59548;
+    }
+}

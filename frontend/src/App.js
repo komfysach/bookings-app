@@ -1,18 +1,27 @@
 import './App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import AuthAdminPage from './components/AdminAuth';
-import AuthPatronPage from './components/PatronAuth';
+import AuthAdminPage from './pages/AdminAuth.page';
+import AuthPatronPage from './pages/PatronAuth.page';
+import MainNavigation from './components/Nav/MainNav.component';
+import React from 'react';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route path="/" component={null} exact />
-      <Route path="/admin" component={AuthAdminPage} />
-      <Route path="/patron" component={AuthPatronPage} />
-      <Route path="/events" component={null} />
-      <Route path="/bookings" component={null} />
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <React.Fragment>
+          <MainNavigation />
+          <main className="main_content">
+            <Route path="/" component={null} exact />
+            <Route path="/admin" component={AuthAdminPage} />
+            <Route path="/patron" component={AuthPatronPage} />
+            <Route path="/events" component={null} />
+            <Route path="/bookings" component={null} />
+          </main>
+        </React.Fragment>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -6,14 +6,14 @@ module.exports = (req, res, next) => {
         req.isAuth = false;
         return next();
     }
-    const token = authAdminHeader.split(' ')[1]; // Bearer token
-    if (!token || token === '') {
+    const tokenAdmin = authAdminHeader.split(' ')[1]; // Bearer token
+    if (!tokenAdmin || tokenAdmin === '') {
         req.isAuth = false;
         return next();
     }
     let decodedAdminToken;
     try {
-        decodedAdminToken = jwt.verify(token, 'somesupersecrettokenkey');
+        decodedAdminToken = jwt.verify(tokenAdmin, 'somesupersecrettokenkey');
     } catch (err) {
         req.isAuth = false;
         return next();
@@ -29,14 +29,14 @@ module.exports = (req, res, next) => {
         return next();
     }
 
-    const token = authPatronHeader.split(' ')[1]; // Bearer token
-    if (!token || token === '') {
+    const tokenPatron = authPatronHeader.split(' ')[1]; // Bearer token
+    if (!tokenPatron || tokenPatron === '') {
         req.isAuth = false;
         return next();
     }
     let decodedPatronToken;
     try {
-        decodedPatronToken = jwt.verify(token, 'somesupersecrettokenkey');
+        decodedPatronToken = jwt.verify(tokenPatron, 'somesupersecrettokenkey');
     } catch (err) {
         req.isAuth = false;
         return next();

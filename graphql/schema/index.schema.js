@@ -64,13 +64,13 @@ type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
     adminLogin(email: String!, password: String!): AuthAdminData!
-    adminPatron(email: String!, password: String!): AuthPatronData!
+    patronLogin(email: String!, password: String!): AuthPatronData!
 }
 
 type RootMutation {
     createEvent(eventInput: EventInput): Event
     createAdmin(adminInput: AdminInput): Admin
-    createdPatron(patronInput: PatronInput): Patron
+    createPatron(patronInput: PatronInput): Patron
     bookEvent(eventId: ID!): Booking!
     cancelBooking(bookingId: ID!): Event!
 }

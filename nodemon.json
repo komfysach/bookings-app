@@ -1,7 +1,7 @@
 {
     "env": {
         "MONGO_USER": "guest",
-        "MONGO_PASSWORD": "FPuAYsmGQqlgrRLL",
+        "MONGO_PASSWORD": "Eg5TGAAg2ptGIZBN",
         "MONGO_DB": "bookings-react-dev"
     }
 }

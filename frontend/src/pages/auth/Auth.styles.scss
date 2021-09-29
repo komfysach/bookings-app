@@ -1,0 +1,52 @@
+.auth-form {
+    width: 25rem;
+    max-width: 80%;
+    margin: 5rem auto;
+}
+
+.form-control label,
+.form-control input {
+    width: 100%;
+    display: block;
+    color: #fcf7d9;
+}
+
+.form-control label {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
+
+.form-control input {
+    background: none;
+    background-color: #100f10;
+    border: none;
+    border-radius: 0;
+    border-bottom: 0.05rem solid #f59548;
+    padding: 1rem 1rem 1rem 0.5rem;
+}
+
+.form-actions button {
+    // min-width: 165px;
+    width: auto;
+    height: 3rem;
+    letter-spacing: 0.05rem;
+    line-height: 2rem;
+    padding: 0 1rem 0 1rem;
+    margin-right: 1rem;
+    // font-size: 15px;
+    background-color: #f59548;
+    color: #100f10;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        background-color: #100f10;
+        color: #fcf7d9;
+        border: 0.05rem solid #f59548;
+    }
+}

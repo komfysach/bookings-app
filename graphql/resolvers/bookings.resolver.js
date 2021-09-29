@@ -2,6 +2,7 @@ const Booking = require('../../models/booking');
 const Event = require('../../models/event');
 const Patron = require('../../models/patron');
 const { transformBooking, transformEvent } = require('./merge.resolver');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
     bookings: async(args, req) => {

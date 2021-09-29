@@ -69,6 +69,9 @@ module.exports = {
         if (!isEqual) {
             throw new Error('Password and email is incorrect');
         }
-        const token = jwt.sign({ patronId: patron.id, email: patron.email }, 'somesupersecrettokenkey')
+        const token = jwt.sign({ patronId: patron.id, email: patron.email }, 'somesupersecrettokenkey', {
+            expiresIn: '1h'
+        });
+        return { patronId: patron.id, token: token, tokenExpiration: 1 };
     }
 };

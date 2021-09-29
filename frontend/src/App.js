@@ -1,8 +1,8 @@
 import './App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import AuthAdminPage from './pages/AdminAuth.page';
-import AuthPatronPage from './pages/PatronAuth.page';
+import AuthAdminPage from './pages/auth/AdminAuth.page';
+import AuthPatronPage from './pages/auth/PatronAuth.page';
 import MainNavigation from './components/Nav/MainNav.component';
 import React from 'react';
 

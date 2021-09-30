@@ -27,4 +27,27 @@
     .main_navigation__items a.active {
         color: #f59548;
     }
+
+    .main_navigation__items button {
+        // min-width: 165px;
+        width: auto;
+        height: 2rem;
+        letter-spacing: 0.05rem;
+        line-height: 2rem;
+        padding: 0 1rem 0 1rem;
+        margin-left: 1rem;
+        // font-size: 15px;
+        background-color: #100f10;
+        color: #fcf7d9;
+        border: 0.05rem solid #f59548;
+        text-transform: uppercase;
+        font-family: 'Montserrat';
+        font-weight: bolder;
+        cursor: pointer;
+        &:hover {
+            background-color: #f59548;
+            color: #100f10;
+            border: 0.05rem solid #f59548;
+        }
+    }
 }

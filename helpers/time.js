@@ -1,0 +1,1 @@
+exports.timeToString = time => new Date(time).toISOString();

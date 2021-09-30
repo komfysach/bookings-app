@@ -1,4 +1,5 @@
 const { dateToString } = require('../../helpers/date');
+const {timeToString} = require('../../helpers/time');
 const Event = require('../../models/event');
 const Admin = require('../../models/admin');
 const { transformEvent } = require('./merge.resolver');
@@ -21,9 +22,10 @@ module.exports = {
         }
         const event = new Event({
             title: args.eventInput.title,
-            description: args.eventInput.description,
-            price: +args.eventInput.price,
+            time: timeToString(args.eventInput.time),
             date: dateToString(args.eventInput.date),
+            totalPax: +args.eventInput.totalPax,
+            img: args.eventInput.img,
             creator: req.adminId
         });
         let createdEvent;

@@ -5,6 +5,8 @@ type Booking {
     _id: ID!
     event: Event!
     patron: Patron!
+    totalPax: Int!
+    table: Int!
     createdAt: String!
     updatedAt: String!
 }
@@ -12,9 +14,10 @@ type Booking {
 type Event {
     _id: ID!
     title: String!
-    description: String!
-    price: Float!
+    time: String!
     date: String!
+    totalPax: Int!
+    img: String!
     creator: Admin!
 }
 
@@ -45,9 +48,9 @@ type AuthPatronData {
 
 input EventInput {
     title: String
-    description: String!
-    price: Float!
+    time: String!
     date: String!
+    totalPax: Int!
 }
 
 input AdminInput {

@@ -69,9 +69,8 @@ class AuthPatronPage extends Component {
             return res.json();
         })
             .then(resData => {
-                if (resData.data.patronLogin.token) {
-                    this.context.patronLogin(resData.data.patronLogin.token, resData.data.patronLogin.patronId, resData.data.patronLogin.tokenExpiration)
-
+                if (resData.data.login.token) {
+                    this.context.login(resData.data.login.token, resData.data.login.patronId, resData.data.login.tokenExpiration)
                 }
             })
             .catch(err => {

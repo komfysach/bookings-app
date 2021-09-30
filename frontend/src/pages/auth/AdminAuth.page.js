@@ -47,7 +47,7 @@ class AuthAdminPage extends Component {
             requestBody = {
                 query: `
                     mutation {
-                        createAdmin(AdminInput: {email: "${email}", password: "${password}"}) {
+                        createAdmin(adminInput: {email: "${email}", password: "${password}"}) {
                             _id
                             email
                         }
@@ -71,8 +71,8 @@ class AuthAdminPage extends Component {
             .then(resData => {
                 if (resData.data.adminLogin.token) {
                     this.context.adminLogin(resData.data.adminLogin.token, resData.data.adminLogin.adminId, resData.data.adminLogin.tokenExpiration)
-
                 }
+                console.log(resData);
             })
             .catch(err => {
                 console.log(err);
@@ -90,8 +90,8 @@ class AuthAdminPage extends Component {
                     <input type="password" id="password" ref={this.passwordAdminEl} />
                 </div>
                 <div className="form-actions">
-                    <button typer="submit">Submit</button>
-                    <button typer="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
+                    <button type="submit"> {this.state.isLogin ? 'Login' : 'Register'}</button>
+                    <button type="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
                 </div>
             </form>
         )

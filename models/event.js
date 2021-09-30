@@ -7,17 +7,21 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
+    time: {
+        type: Date,
         required: true
     },
     date: {
         type: Date,
         required: true
+    },
+    totalPax: {
+        type: Number,
+        required: true
+    },
+    img: {
+        data: Buffer,
+        type: String
     },
     creator: {
         type: Schema.Types.ObjectId,

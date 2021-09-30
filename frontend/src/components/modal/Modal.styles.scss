@@ -1,0 +1,60 @@
+.modal {
+    width: 90%;
+    background: #100f10;
+    position: fixed;
+    top: 20vh;
+    color: #fcf7d9;
+    border: 0.05rem solid #f59548;
+    // display: flex;
+}
+
+.modal__header {
+    padding: 1rem;
+    background-color: #f59548;
+    color: #100f10;
+}
+
+.modal__header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.modal__content {
+    padding: 1rem;
+}
+
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.btn {
+    width: auto;
+    height: 3rem;
+    letter-spacing: 0.05rem;
+    line-height: 2rem;
+    padding: 0 1rem 0 1rem;
+    margin: 1rem;
+    // align-items: center;
+    // font-size: 15px;
+    background-color: #f59548;
+    color: #100f10;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        background-color: #100f10;
+        color: #fcf7d9;
+        border: 0.05rem solid #f59548;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal {
+        width: 50rem;
+        left: calc((100% - 50rem) / 2);
+    }
+}

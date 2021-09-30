@@ -2,7 +2,7 @@ import './App.scss';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AuthContext from './components/context/auth-context';
 import AuthAdminPage from './pages/auth/AdminAuth.page';
-import AuthPatronPage from './pages/auth/PatronAuth.page';
+// import AuthPatronPage from './pages/auth/PatronAuth.page';
 import MainNavigation from './components/nav/MainNav.component';
 import EventsPage from './pages/events/Events.page';
 import React from 'react';
@@ -40,11 +40,11 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/" component={null} exact />
                   {this.state.token && <Redirect from="/admin" to="/bookings" exact />}
-                    {/* {!this.state.token && <Route path="/patron" component={AuthPatronPage} />}*/}
-                    {this.state.token && <Route path="/events" component={EventsPage} />}
+                  {/* {!this.state.token && <Route path="/patron" component={AuthPatronPage} />}*/}
+                  {this.state.token && <Route path="/events" component={EventsPage} />}
                   {!this.state.token && <Route path="/admin" component={AuthAdminPage} />}
-                    <Route path="/events" component={null} />
-                    {!this.state.token && <Redirect from="/bookings" to="/admin" />}
+                  <Route path="/events" component={null} />
+                  {!this.state.token && <Redirect from="/bookings" to="/admin" />}
                 </Switch>
               </main>
             </AuthContext.Provider>

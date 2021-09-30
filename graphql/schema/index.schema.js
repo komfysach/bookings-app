@@ -14,10 +14,9 @@ type Booking {
 type Event {
     _id: ID!
     title: String!
-    time: String!
     date: String!
-    totalPax: Int!
-    img: String!
+    description: String!
+    image: String!
     creator: Admin!
 }
 
@@ -48,9 +47,9 @@ type AuthPatronData {
 
 input EventInput {
     title: String
-    time: String!
     date: String!
-    totalPax: Int!
+    description: String!
+    image: String!
 }
 
 input AdminInput {

@@ -1,25 +1,25 @@
-const Booking = require('../../models/booking');
+const Ticket = require('../../models/tickets');
 const Event = require('../../models/event');
 const Patron = require('../../models/patron');
-const { transformBooking, transformEvent } = require('./merge.resolver');
+const { transformTicket, transformEvent } = require('./merge.resolver');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-    bookings: async(args, req) => {
+    tickets: async (args, req) => {
         if (!req.isAuth) {
             throw new Error('Unauthenticated');
         }
         try {
-            const bookings = await Booking.find();
-            return bookings.map(booking => {
-                return transformBooking(booking);
+            const tickets = await ticket.find();
+            return tickets.map(ticket => {
+                return transformTicket(ticket);
             })
 
         } catch (err) {
             throw err;
         }
     },
-    createPatron: async(args) => {
+    createPatron: async (args) => {
         try {
             const existingPatron = await Patron.findOne({ email: args.patronInput.email })
             if (existingPatron) {
@@ -34,36 +34,36 @@ module.exports = {
             const result = await patron.save();
 
             console.log(result);
-            return {...result._doc, password: null, id: result.id };
+            return { ...result._doc, password: null, id: result.id };
         } catch (err) {
             console.log(err);
             throw err;
         };
     },
-    bookEvent: async(args, req) => {
+    bookEvent: async (args, req) => {
         if (!req.isAuth) {
             throw new Error('Unauthenticated');
         }
         try {
             const fetchedEvent = await Event.findOne({ _id: args.eventId });
-            const booking = new Booking({
+            const ticket = new Ticket({
                 patron: req.patronId,
                 event: fetchedEvent
             });
-            const result = await booking.save();
-            return transformBooking(result);
+            const result = await ticket.save();
+            return transformTicket(result);
         } catch (err) {
             throw err;
         }
     },
-    cancelBooking: async(args, req) => {
+    cancelTicket: async (args, req) => {
         if (!req.isAuth) {
             throw new Error('Unauthenticated');
         }
         try {
-            const booking = await Booking.findById(args.bookingId).populate('event');
-            const event = transformEvent(booking.event);
-            await Booking.deleteOne({ _id: argsBookingId });
+            const ticket = await Ticket.findById(args.ticketId).populate('event');
+            const event = transformEvent(ticket.event);
+            await Ticket.deleteOne({ _id: argsTicketId });
             return event;
         } catch (err) {
             throw err;

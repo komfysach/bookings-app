@@ -21,6 +21,10 @@ class EventsPage extends Component {
         this.descriptionElRef = React.createRef();
     }
 
+    componentDidMount() {
+        this.fetchEvents();
+    }
+
     startCreateEventHandler = () => {
         this.setState({ creating: true });
     };
@@ -32,7 +36,12 @@ class EventsPage extends Component {
         const image = this.imageElRef.current.value;
         const description = this.descriptionElRef.current.value;
 
-        if (title.trim().length === 0 || date.trim().length === 0 || image.trim().length === 0 || description.trim().length === 0) {
+        if (
+            title.trim().length === 0 ||
+            date.trim().length === 0 ||
+            image.trim().length === 0 ||
+            description.trim().length === 0
+        ) {
             return;
         }
 
@@ -42,11 +51,11 @@ class EventsPage extends Component {
         const requestBody = {
             query: `
                     mutation {
-                        createEvent(eventInput: {title: "${title}", date: "${date}", image: "${image}", description: "${description}}) {
+                        createEvent(eventInput: {title: "${title}", date: "${date}", description: "${description}", image: "${image}"}) {
                             _id
                             title
-                            description
                             date
+                            description
                             image
                             creator {
                                 _id
@@ -84,6 +93,46 @@ class EventsPage extends Component {
         this.setState({ creating: false });
     };
 
+    fetchEvents() {
+        const requestBody = {
+            query: `
+                    query {
+                        events {
+                            _id
+                            title
+                            description
+                            date
+                            image
+                            creator {
+                                _id
+                                email
+                            }
+                        }
+                    }
+                `
+        };
+
+        fetch('http://localhost:8000/graphql', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(res => {
+            if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed!');
+            }
+            return res.json();
+        })
+            .then(resData => {
+                console.log(resData);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -117,6 +166,10 @@ class EventsPage extends Component {
                 {this.context.token && (<div className="events_page__items">
                     <button onClick={this.startCreateEventHandler}>Create Event</button>
                 </div>)}
+                <ul className="events__list">
+                    <li className="events__list-item">Test</li>
+                    <li className="events__list-item">Test</li>
+                </ul>
             </React.Fragment>
         )
     };

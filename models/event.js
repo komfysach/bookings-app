@@ -15,10 +15,13 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    img: {
-        data: Buffer,
-        type: String,
+    price: {
+        type: Number,
         required: true
+    },
+    image: {
+        type: Schema.Types.ObjectId,
+        ref: 'Image'
     },
     creator: {
         type: Schema.Types.ObjectId,

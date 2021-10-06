@@ -1,14 +1,17 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-type Booking {
+type Ticket {
     _id: ID!
     event: Event!
     patron: Patron!
-    totalPax: Int!
-    table: Int!
     createdAt: String!
     updatedAt: String!
+}
+
+type Image {
+    _id: ID!
+    fileLocation: String!
 }
 
 type Event {
@@ -16,7 +19,8 @@ type Event {
     title: String!
     date: String!
     description: String!
-    image: String!
+    image: [Image!]
+    price: Float!
     creator: Admin!
 }
 
@@ -49,7 +53,8 @@ input EventInput {
     title: String
     date: String!
     description: String!
-    image: String!
+    price: Float!
+    image: [Image!]
 }
 
 input AdminInput {
@@ -64,7 +69,7 @@ input PatronInput {
 
 type RootQuery {
     events: [Event!]!
-    bookings: [Booking!]!
+    tickets: [Ticket!]!
     adminLogin(email: String!, password: String!): AuthAdminData!
     patronLogin(email: String!, password: String!): AuthPatronData!
 }
@@ -73,8 +78,8 @@ type RootMutation {
     createEvent(eventInput: EventInput): Event
     createAdmin(adminInput: AdminInput): Admin
     createPatron(patronInput: PatronInput): Patron
-    bookEvent(eventId: ID!): Booking!
-    cancelBooking(bookingId: ID!): Event!
+    buyTicket(eventId: ID!): Ticket!
+    cancelTicket(ticketId: ID!): Event!
 }
 
 schema {

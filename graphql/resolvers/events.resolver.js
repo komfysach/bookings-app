@@ -23,7 +23,7 @@ module.exports = {
             title: args.eventInput.title,
             date: dateToString(args.eventInput.date),
             description: args.eventInput.description,
-            img: args.eventInput.img,
+            image: args.eventInput.image,
             creator: req.adminId
         });
         let createdEvent;

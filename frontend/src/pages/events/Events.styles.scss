@@ -7,6 +7,21 @@
     max-width: 80%;
 }
 
+.events__list {
+    max-width: 90%;
+    margin: 2rem auto;
+    width: 40rem;
+    list-style: none;
+    padding: 0;
+}
+
+.events__list-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #f59548;
+    color: #fcf7d9;
+}
+
 .events_page__items button {
     // min-width: 165px;
     width: auto;

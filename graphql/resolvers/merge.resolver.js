@@ -48,14 +48,14 @@ const patron = async patronId => {
     };
 };
 
-const transformBooking = booking => {
+const transformTicket = ticket => {
     return {
-        ...booking._doc,
-        _id: booking.id,
-        patron: patron.bind(this, booking._doc.user),
-        event: singleEvent.bind(this, booking._doc.event),
-        createdAt: dateToString(booking._doc.createdAt),
-        updatedAt: dateToString(booking._doc.updatedAt),
+        ...ticket._doc,
+        _id: ticket.id,
+        patron: patron.bind(this, ticket._doc.user),
+        event: singleEvent.bind(this, ticket._doc.event),
+        createdAt: dateToString(ticket._doc.createdAt),
+        updatedAt: dateToString(ticket._doc.updatedAt),
     };
 };
 
@@ -71,5 +71,5 @@ const transformEvent = event => {
 // exports.admin = admin;
 // exports.events = events;
 // exports.singleEvent = singleEvent;
-exports.transformBooking = transformBooking;
+exports.transformTickets = transformTicket;
 exports.transformEvent = transformEvent;

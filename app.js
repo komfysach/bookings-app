@@ -1,3 +1,4 @@
+const graphqlUploadExpress = require('graphql-upload').graphqlUploadExpress;
 const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHTTP = require('express-graphql').graphqlHTTP;
@@ -6,6 +7,7 @@ const isAuth = require('./middleware/is-auth.middleware');
 
 const graphQlSchema = require('./graphql/schema/index.schema');
 const graphQlResolvers = require('./graphql/resolvers/index.resolver');
+
 
 const app = express();
 
@@ -26,6 +28,7 @@ app.use(isAuth);
 // graphql schema
 app.use(
     '/graphql',
+    graphqlUploadExpress({ maxFieldSize: 10000000, maxFiles: 10 }),
     graphqlHTTP({
         schema: graphQlSchema,
         rootValue: graphQlResolvers,

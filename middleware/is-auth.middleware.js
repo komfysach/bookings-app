@@ -1,49 +1,26 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-    const authAdminHeader = req.get('Authorization');
-    if (!authAdminHeader) {
+    const authUserHeader = req.get('Authorization');
+    if (!authUserHeader) {
         req.isAuth = false;
         return next();
     }
-    const tokenAdmin = authAdminHeader.split(' ')[1]; // Bearer token
-    if (!tokenAdmin || tokenAdmin === '') {
+    const tokenUser = authUserHeader.split(' ')[1]; // Bearer token
+    if (!tokenUser || tokenUser === '') {
         req.isAuth = false;
         return next();
     }
-    let decodedAdminToken;
+    let decodedUserToken;
     try {
-        decodedAdminToken = jwt.verify(tokenAdmin, 'somesupersecrettokenkey');
+        decodedUserToken = jwt.verify(tokenUser, 'somesupersecrettokenkey');
     } catch (err) {
         req.isAuth = false;
         return next();
     }
-    if (!decodedAdminToken) {
+    if (!decodedUserToken) {
         req.isAuth = true;
-        req.adminId = decodedAdminToken.adminId;
+        req.UserId = decodedUserToken.UserId;
         return next();
-    }
-    const authPatronHeader = req.get('Authorization');
-    if (!authPatronHeader) {
-        req.isAuth = false;
-        return next();
-    }
-
-    const tokenPatron = authPatronHeader.split(' ')[1]; // Bearer token
-    if (!tokenPatron || tokenPatron === '') {
-        req.isAuth = false;
-        return next();
-    }
-    let decodedPatronToken;
-    try {
-        decodedPatronToken = jwt.verify(tokenPatron, 'somesupersecrettokenkey');
-    } catch (err) {
-        req.isAuth = false;
-        return next();
-    }
-    if (!decodedPatronToken) {
-        req.isAuth = true;
-        req.patronId = decodedPatronToken.patronId;
-        next();
     }
 }

@@ -9,6 +9,10 @@ type Ticket {
     updatedAt: String!
 }
 
+type Role {
+    roles: [String]!
+}
+
 type Image {
     _id: ID!
     fileLocation: String!
@@ -21,30 +25,24 @@ type Event {
     description: String!
     image: [Image!]
     price: Float!
-    creator: Admin!
+    creator: [User!]
 }
 
-type Admin {
+type User {
     _id: ID!
+    name: String!
     email: String!
     password: String
-    createdEvents: [Event!]
+    boughtTickets: [Event!]
 }
 
-type Patron {
-    _id: ID!
+type UserPref {
+    name: String!
     email: String!
-    password: String
-}
+  }
 
-type AuthAdminData {
-    adminId: ID!
-    token: String!
-    tokenExpiration: Int!
-}
-
-type AuthPatronData {
-    patronId: ID!
+type AuthData {
+    userId: ID!
     token: String!
     tokenExpiration: Int!
 }
@@ -57,12 +55,8 @@ input EventInput {
     image: [Image!]
 }
 
-input AdminInput {
-    email: String!
-    password: String!
-}
-
-input PatronInput {
+input UserInput {
+    name: String!
     email: String!
     password: String!
 }
@@ -70,14 +64,14 @@ input PatronInput {
 type RootQuery {
     events: [Event!]!
     tickets: [Ticket!]!
-    adminLogin(email: String!, password: String!): AuthAdminData!
-    patronLogin(email: String!, password: String!): AuthPatronData!
+    userLogin(email: String!, password: String!): AuthData!
 }
 
 type RootMutation {
     createEvent(eventInput: EventInput): Event
-    createAdmin(adminInput: AdminInput): Admin
-    createPatron(patronInput: PatronInput): Patron
+    createUser(userInput: UserInput): User
+    updateUser(name: String!, email: String!, password: String!): UserPref
+    updateUserAdmin(userId: ID!, roles: [String!]!): Role
     buyTicket(eventId: ID!): Ticket!
     cancelTicket(ticketId: ID!): Event!
 }

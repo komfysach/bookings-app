@@ -1,6 +1,6 @@
 const { dateToString } = require('../../helpers/date');
 const Event = require('../../models/event');
-const Admin = require('../../models/admin');
+const User = require('../../models/user');
 const { transformEvent } = require('./merge.resolver');
 
 
@@ -23,14 +23,15 @@ module.exports = {
             title: args.eventInput.title,
             date: dateToString(args.eventInput.date),
             description: args.eventInput.description,
+            price: +args.eventInput.price,
             image: args.eventInput.image,
-            creator: req.adminId
+            creator: req.userId
         });
         let createdEvent;
         try {
             const result = await event.save();
             createdEvent = transformEvent(result);
-            const creator = await Admin.findById(req.adminId);
+            const creator = await User.findById(req.userId);
             console.log(result);
 
             if (!creator) {

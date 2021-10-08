@@ -1,6 +1,5 @@
 const Event = require('../../models/event');
-const Admin = require('../../models/admin');
-const Patron = require('../../models/patron');
+const User = require('../../models/user');
 const { dateToString } = require('../../helpers/date');
 
 const events = async eventIds => {
@@ -23,25 +22,13 @@ const singleEvent = async eventId => {
     };
 };
 
-const admin = async adminId => {
+const user = async userId => {
     try {
-        const admin = await Admin.findById(adminId)
+        const user = await User.findById(userId)
         return {
-            ...admin._doc,
-            _id: admin.id,
-            createdEvents: events.bind(this, admin._doc.createdEvents)
-        };
-    } catch (err) {
-        throw err;
-    };
-};
-
-const patron = async patronId => {
-    try {
-        const patron = await Patron.findById(patronId)
-        return {
-            ...patron._doc,
-            _id: patron.id,
+            ...user._doc,
+            _id: user.id,
+            boughtTickets: events.bind(this, user._doc.boughtTickets)
         };
     } catch (err) {
         throw err;
@@ -52,7 +39,7 @@ const transformTicket = ticket => {
     return {
         ...ticket._doc,
         _id: ticket.id,
-        patron: patron.bind(this, ticket._doc.user),
+        user: user.bind(this, ticket._doc.user),
         event: singleEvent.bind(this, ticket._doc.event),
         createdAt: dateToString(ticket._doc.createdAt),
         updatedAt: dateToString(ticket._doc.updatedAt),
@@ -64,12 +51,9 @@ const transformEvent = event => {
         ...event._doc,
         _id: event.id,
         date: dateToString(event._doc.date),
-        creator: admin.bind(this, event.creator)
+        creator: user.bind(this, event.creator)
     };
 };
 
-// exports.admin = admin;
-// exports.events = events;
-// exports.singleEvent = singleEvent;
 exports.transformTickets = transformTicket;
 exports.transformEvent = transformEvent;

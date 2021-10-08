@@ -1,0 +1,5 @@
+{
+    "env": {
+        "JWT_SECRET_KEY": "mysup3rs3cr3tjwtk3y"
+    }
+}
